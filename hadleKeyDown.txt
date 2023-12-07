@@ -1,0 +1,17 @@
+    //          event handler: 댓글  작성 클릭 이벤트 처리          //
+    const KeyDownhandler  = (e : KeyboardEvent) =>{
+        if (e.key === 'Enter') {
+            e.preventDefault(); // Prevent the default behavior of the Enter key
+            // You can add your own custom logic here if needed
+        }
+
+        const isEqual = comment === materialComment;
+        if(isEqual){
+            setShowComments(false);
+            return;
+        }
+
+        if(e.key === 'Enter' || isModified){
+            // patchStudyMaterialCommentRequest().then(patchStudyMaterialCommentResponse)
+        }
+    }
