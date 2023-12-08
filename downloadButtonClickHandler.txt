@@ -1,0 +1,21 @@
+  //          event handler: 다운로드 클릭 이벤트 처리          //
+  const onDownloadButtonClickHandler = async () => {
+    alert('다운로드 이벤트 처리');
+    const accessToken = cookies.accessToken;
+    if (!studyNumber || !accessToken) return;
+
+    setIsChecked(!isChecked);
+
+    checkedMaterialNumbers.forEach(async (materialNumber) => {
+
+      // Create FormData object to pass image URL to fileUploadRequest
+      const formData = new FormData();
+      formData.append('imageUrl', materialList[materialNumber].studyMaterialImageUrl);
+
+      // Call fileUploadRequest with FormData object
+      fileUploadRequest(formData);
+
+
+
+    })
+  };
