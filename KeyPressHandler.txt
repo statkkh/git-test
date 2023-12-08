@@ -1,0 +1,15 @@
+    //          event handler: 키 프레스 클릭 이벤트 처리          //
+    const handleInputComplete = (event: any) => {
+        if(!textareaRef.current) return;
+        if (event.key === "Enter" ) {
+            // 엔터키를 누르면 값을 저장합니다.
+            const isEqual = comment === materialComment;
+            if(!isEqual) return;
+            setShowComments(false); 
+            setComment(comment);
+            
+            textareaRef.current.blur();
+            textareaRef.current.selectionStart = textareaRef.current.selectionEnd;
+            onUpdateChangeHandler(commentItem.studyMaterialCommentNumber);
+        } 
+    }; 
