@@ -1,0 +1,21 @@
+//          event handler: 댓글 박스 벗어 난곳에 클릭 이벤트 처리          //
+const handleOutsideClick = (event: any) => {
+    if (!textareaRef.current) {
+        return;
+    }
+    const isEqual = comment === materialComment;
+    if(!isEqual) return;
+
+    if (textareaRef.current && textareaRef.current.contains(event.target)) {
+        // textarea 외부를 클릭한 경우에만 수정 완료 처리를 합니다.
+        setComment(comment);
+    }
+
+    if (isCommentBoxOutSideClick) {
+        setShowComments(false); 
+        textareaRef.current.blur();
+        setIsCommentBoxOutSideClick(!isCommentBoxOutSideClick);
+        onUpdateChangeHandler(commentItem.studyMaterialCommentNumber);
+    }
+
+};

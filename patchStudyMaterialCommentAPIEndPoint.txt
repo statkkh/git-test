@@ -1,0 +1,39 @@
+//        description: patch study material comment  API end point        //
+const PATCH_STUDY_STUDY_MATERIAL_COMMENT_LIST_URL = (studyNumber: string | number,studyMaterialNumber: string | number) => `${API_DOMAIN}/service/${studyNumber}/material-comment/{studyMaterialNumber}`;
+
+export const patcheStudyMatericlCommentRequest = async(studyNumber : string | number,studyMaterialNumber: string | number, token: string) =>{
+    const result = await axios.patch(PATCH_STUDY_STUDY_MATERIAL_COMMENT_LIST_URL(studyNumber,studyMaterialNumber),authorization(token))
+        .then(response =>{
+            const responseBody : PostStudyMaterialCommentResponseDto = response.data;
+            const {code} = responseBody;
+            return code;
+        })
+        .catch(error =>{
+            const responseBody : ResponseDto = error.response.data;
+            const { code } = responseBody;
+            return code;
+        })
+    return result;
+}
+
+//        description: delete study material comment list  API end point        //
+const DELETE_STUDY_STUDY_MATERIAL_COMMENT_LIST_URL = (studyNumber: string | number,studyMaterialNumber: string | number, studyMaterialCommentnumber: string | number) => `${API_DOMAIN}/service/${studyNumber}/material-comment/${studyMaterialNumber}/${studyMaterialCommentnumber}`;
+
+
+export const deleteStudyMaterialCommentRequest = async(studyNumber: string | number,studyMaterialNumber: string | number, studyMaterialCommentnumber: string | studyMaterialNumber, token: string) =>{
+    const result = await axios.delete(DELETE_STUDY_STUDY_MATERIAL_COMMENT_LIST_URL(),authorization(token))
+            .then((response)=>{
+                const responseBody : DeleteStudyMaterialCommentResponseDto = response.data;
+                const {code} = responseBody;
+                return code;                
+            })
+            .catch((error)=>{
+                const responseBody : ResponseDto = error.response.data;
+                const { code } = responseBody;
+                return code;
+            })
+
+    return result;
+}
+
+,authorization(token)

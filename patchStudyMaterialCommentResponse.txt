@@ -1,0 +1,20 @@
+//           function: patch study material comment response 처리 함수          //
+const patchStudyMaterialCommentResponse = (responseBody : ResponseDto) => {
+    const { code } = responseBody;
+    if(code === 'VF') alert('잘못된 접근입니다.');
+    if (code === 'NU' || code === 'AF') {
+        navigator(AUTH_PATH);
+        return;
+    } 
+    if(code === 'NS') alert('존재하지 않는 스터디입니다.');
+    if(code === 'NSMC') alert('존재하지 않는 자료 코멘트입니다.');
+    if(code === 'NP') alert('권한이 없습니다.');
+    if(code === 'DBE') alert('데이터베이스 오류입니다.');
+    if(code !== 'SU'){ 
+        navigator(MAIN_PATH);
+        return;      
+    }              
+    setComment(comment);
+    // getStudyMaterialCommentListRequest().then(getStudyMaterialCommentListResponse);
+}
+
