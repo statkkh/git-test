@@ -1,0 +1,55 @@
+// description: file upload end point //
+const FILE_UPLOAD_URL = () => `${FILE_DOMAIN}/upload`;
+
+// description: File Content type Header //
+const multipart = { headers: { 'Content-Type': 'multipart/form-data' } };
+
+
+// description: file upload request //
+export const fileUploadRequest = async (data: FormData) => {
+    const result = await axios.post(FILE_UPLOAD_URL(), data, multipart)
+        .then(response => {
+            const responseBody: string = response.data;
+            return responseBody;
+        })
+        .catch(error => {
+            return null;
+        });
+    return result;
+}
+
+
+
+
+function previewFile() {
+  const preview = document.querySelector("img");
+  const file = document.querySelector("input[type=file]").files[0];
+  const reader = new FileReader();
+
+  reader.addEventListener(
+    "load",
+    () => {
+      // convert image file to base64 string
+      preview.src = reader.result;
+    },
+    false,
+  );
+
+  if (file) {
+    reader.readAsDataURL(file);
+  }
+}
+
+
+function fileToString(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const string = reader.result;
+      resolve(string);
+    };
+    reader.onerror = reject;
+    reader.readAsText(file);
+  });
+}
+
