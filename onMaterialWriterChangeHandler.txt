@@ -1,0 +1,22 @@
+//          state : 자료 이름 변경 상태          //
+const [showChangeMaterialWriter,setShowChangeMaterialWriter] = useState<boolean>(false);
+
+
+
+//          event handler : 자료 이름 변경 이벤트 처리          //
+const onMaterialWriterChangeHandler = () =>{
+    if(!showChangeMaterialWriter){
+        setShowChangeMaterialWriter(true);
+    }
+    const isEqual = materialName === studyMaterialName;
+    if(isEqual){
+        setShowChangeMaterialWriter(false);
+    }
+
+    const accessToken = cookies.accessToken;
+    if (!accessToken) return;
+
+    const requestBody : PatchStudyMaterialName = {
+        studyMaterialWriter : materialWriter  
+    }
+} 
