@@ -1,0 +1,35 @@
+    //          event handler: 댓글 수정 이벤트 처리               //
+    const onEditClickHandler = (studyMaterialCommentNumber : number) => {
+        if(!studyNumber) return;
+        const accessToken = cookies.accessToken;
+        if (!accessToken || !user) {
+            navigator(MAIN_PATH);
+            return;
+        }
+
+        const isEditer = user.userEmail === userEmail;
+        if(!isEditer) return;
+        
+        const isEqual = comment === materialComment;
+        if(isEqual){
+            setShowComments(false);
+            setIsCommentBoxOutSideClick(false);
+            return;
+        }
+
+        if(!isEqual && textareaRef.current){
+            setShowComments(false);   
+            setIsCommentBoxOutSideClick(false); 
+        }
+
+        const isWriter = materialCommentList.find((materialComment,studyMaterialCommentNumber) => 
+            (materialComment.userEmail === user.userEmail && 
+            materialComment.studyMaterialCommentNumber === studyMaterialCommentNumber));
+        if(!isWriter) return;
+
+        // const requestBody : PatchStudyMaterialCommentRequestDto = {
+            // studyMaterialCommentNumber : studyMaterialCommentNumber,
+                // studyMaterialCommentContent : comment
+        // }
+        // patchStudyMaterialCommentRequest(accessToken,studyNumber,studyMaterialCommentNumber,comment).then(patchStudyMaterialCommentResponse);
+    }
