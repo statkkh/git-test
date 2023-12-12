@@ -53,3 +53,11 @@ function fileToString(file) {
   });
 }
 
+const file = fileInputRef.current.files![0];
+
+const reader = new FileReader();
+reader.onload = () => {
+  const fileUrl = reader.result;
+  setMaterialImage(fileUrl as string);
+};
+reader.readAsDataURL(file);
