@@ -1,0 +1,28 @@
+  //          event handler: 업로드 클릭 이벤트 처리          //
+  const onUploadButtonClickHandler = async () => {
+    if (!fileInputRef.current) return;
+
+    fileInputRef.current.click();
+
+    if (fileInputRef.current.files && fileInputRef.current.files.length > 1) return;
+
+    const file = fileInputRef.current.files![0];
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      const fileUrl = reader.result;
+      setMaterialImage(fileUrl as string);
+    };
+    reader.readAsDataURL(file);
+    
+    const accessToken = cookies.accessToken;
+    if (!accessToken || !studyNumber) return;
+
+    const requestBody : PostStudyMaterialRequestDto = {
+      studyMaterialName : materialName, 
+      studyMaterialWriter : materialWriter,
+      studyMaterialImageUrl :materialImage
+    }      
+
+    postStudyMaterialRequest(requestBody,studyNumber,accessToken).then(postStudyMaterialResponse); 
+  };
