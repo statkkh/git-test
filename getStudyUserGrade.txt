@@ -1,0 +1,13 @@
+      // 스터디 유저리스트에 접속한 유저의 이메일과 일치한 이메일을 찾아 등급을 가져오기 
+      // studyUserList.forEach((studyUser)=>{
+      //   if(studyUser.userEmail === user.userEmail){
+      //     setStudyGrade(studyUser.studyGrade);
+      //   }
+      // })
+
+
+        // 스터디 유저리스트에 접속한 유저의 이메일과 일치한 이메일 있는 지 확인
+      const isMatchedUser = studyUserList.find(studyUser => studyUser.userEmail === user.userEmail && studyUser.studyNumber === studyNumber);
+      if(!isMatchedUser){   
+        navigator(MAIN_PATH);
+      }
